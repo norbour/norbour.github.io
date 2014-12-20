@@ -67,6 +67,67 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Mac上基于Homebrew升级Git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/20/Mac上基于Homebrew升级Git/" class="article-date">
+  <time datetime="2014-12-20T11:36:23.000Z" itemprop="datePublished">12月 20 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/20/Mac上基于Homebrew升级Git/">Mac上基于Homebrew升级Git</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近Git被安全界爆出存在高危漏洞一枚，波及了Windows以及*nix平台上运行的绝大多数版本的Git客户端，github针对此事反应迅速，并且很快发布了<a href="https://github.com/blog/1938-git-client-vulnerability-announced" target="_blank" rel="external">官方公告</a>，公告中针对情况进行了简单说明，并明确了几个经过Git核心团队修复解决存在漏洞的Git版本：</p>
+<blockquote>
+<p>The Git core team has announced maintenance releases for all current versions of Git (v1.8.5.6, v1.9.5, v2.0.5, v2.1.4, and v2.2.1).</p>
+</blockquote>
+<p>今天上午看到国内安全界大牛黑哥<a href="http://weibo.com/u/2783938821?from=feed&amp;loc=at&amp;nick=hi_heige" target="_blank" rel="external">@hi_heige</a>也在微博发表了测试本地Git客户端是否存在漏洞的方法，以及针对Mac平台进行Git升级的操作流程：</p>
+<p><img src="http://fmn.rrfmn.com/fmn059/20141220/1835/original_oPWE_0b58000046341191.jpg" alt="黑哥的微博"></p>
+<p>测试本机Git是否受漏洞影响：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git clone <span class="symbol">http:</span>/<span class="regexp">/gitcasefail.googlecode.com/svn</span><span class="regexp">/trunk/repo</span><span class="regexp">/</span></div></pre></td></tr></table></figure>
+
+<p>如若执行命令后弹出计算器界面则说明存在漏洞。<a href="http://weibo.com/u/2783938821?from=feed&amp;loc=at&amp;nick=hi_heige" target="_blank" rel="external">@hi_heige</a>针对Mac平台给出的升级解决方案操作如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">sudo</span> brew install git</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /usr/bin</div><div class="line">$ <span class="built_in">sudo</span> mkdir old-git </div><div class="line">$ <span class="built_in">sudo</span> mv git* old-git</div></pre></td></tr></table></figure>
+
+<p>解释一下，其实Mac OS X系统中默认都已经在Command-Line-Tool中安装了Git，系统默认调用的依旧还是比较旧的版本，原因是已经通过XCode等方式安装过Git，且它们的路径优先级较高。要检查系统默认调用的是否是通过Homebrew安装的最新版本也很简单，Homebrew安装的Git会被软连接到<code>/usr/local/bin</code>目录下，所以如果使用<code>which git</code>看到的结果不是<code>/usr/local/bin/git</code>，那么我们这时就需要通过上面的方法修改以便能够默认使用自行安装版本的Git。</p>
+<p>按着上边的指导在Mac OS X下使用Homebrew（或其它方式）安装最新版本的Git后，执行<code>git --version</code>却发现显示出来的还是未升级的Git版本号，以为Homebrew安装失败，重新<code>sudo brew install git</code>，Homebrew提示：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">Git</span> already installed, just <span class="keyword">not</span> linked</div></pre></td></tr></table></figure>
+
+<p>于是我们还要进行对新安装的Git进行<code>brew link</code>：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">sudo</span> brew link --overwrite git</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/12/20/Mac上基于Homebrew升级Git/" data-id="vxe9k0fy2g1955co" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/12/20/hello-world/" class="article-date">
@@ -129,14 +190,28 @@
     
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Git/" style="font-size: 20.00px;">Git</a><a href="/tags/Git-Mac-安全/" style="font-size: 10.00px;">Git Mac 安全</a><a href="/tags/Mac/" style="font-size: 20.00px;">Mac</a><a href="/tags/安全/" style="font-size: 20.00px;">安全</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -146,6 +221,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/12/20/Mac上基于Homebrew升级Git/">Mac上基于Homebrew升级Git</a>
+          </li>
         
           <li>
             <a href="/2014/12/20/hello-world/">Hello World</a>
