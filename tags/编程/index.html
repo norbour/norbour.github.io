@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014 | 曹津的博客</title>
+  <title>Tag: 编程 | 曹津的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="曹津的博客">
-<meta property="og:url" content="http://norbour.github.io/archives/2014/">
+<meta property="og:url" content="http://norbour.github.io/tags/编程/">
 <meta property="og:site_name" content="曹津的博客">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -67,55 +67,54 @@
       <div class="outer">
         <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2014" class="archive-year">2014</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2014/12/25/C语言中指针作为函数参数传递的问题/" class="archive-article-date">
-  <time datetime="2014-12-25T08:32:47.000Z" itemprop="datePublished">12月 25</time>
+    <article id="post-C语言中指针作为函数参数传递的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/25/C语言中指针作为函数参数传递的问题/" class="article-date">
+  <time datetime="2014-12-25T08:32:47.000Z" itemprop="datePublished">12月 25 2014</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/12/25/C语言中指针作为函数参数传递的问题/">C语言中指针作为函数参数传递的问题</a>
+      <a class="article-title" href="/2014/12/25/C语言中指针作为函数参数传递的问题/">C语言中指针作为函数参数传递的问题</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2014/12/20/Mac上基于Homebrew升级Git/" class="archive-article-date">
-  <time datetime="2014-12-20T11:36:23.000Z" itemprop="datePublished">12月 20</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/12/20/Mac上基于Homebrew升级Git/">Mac上基于Homebrew升级Git</a>
-    </h1>
-  
+        <p>毕业论文是基于CUDA在GPU上做一些遥感影像处理的并行程序，开始大量使用CUDA C（大部分情况下就是标准C）。虽说是C号称是很“基础”的东西，大家上大学第一学年就学习过（甚至很多非计算机相关专业也要学），期末还能拿个90+，可最近频繁的掉坑还是再一次说明：编程这件事仅靠背书是断然不行的。下面总结一下刚刚踩过的一个C语言中较为有代表性的坑。<br>今天编程时遇到了一个问题，写到一个函数时，让这个函数通过参数返回内存某一个缓冲区的首地址。在网上找了找，发现以下这段代码比较有代表性，于是复制过来作为一个总结说明。</p>
+<p>下面这段代码是典型的踩坑，这段代码通过函数申请一片内存区，并将申请到的内存首地址返回给调用函数：</p>
+<figure class="highlight C"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> getptr(<span class="keyword">int</span> *p,<span class="keyword">int</span> num) {</div><div class="line">    p = (<span class="keyword">int</span> *)maccol(num * <span class="keyword">sizeof</span>(<span class="keyword">int</span>)); </div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> main() {</div><div class="line">    <span class="keyword">int</span> *ptr = NULL; </div><div class="line">    <span class="keyword">int</span> k; </div><div class="line">    </div><div class="line">    getptr(ptr,<span class="number">10</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (ptr == NULL)</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Ptr is still NULL"</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
 
-    </header>
+
+        
+          <p class="article-more-link">
+            <a href="/2014/12/25/C语言中指针作为函数参数传递的问题/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+      <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
+
+    </footer>
   </div>
+  
 </article>
+
+
   
-  
-    </div></section>
   
 </section>
         
